@@ -2,16 +2,16 @@
 
 Hexagon layout specifications:
 
-           b 
+           1 
         ______
        /      \
-   a  /        \  c
+   0  /        \  2
      /          \
      \          /
-   f  \        /  d
+   3  \        /  5
        \______/
 
-           e
+           4
 
 
                  ______

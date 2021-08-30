@@ -6,18 +6,23 @@ namespace HexagonDS
     {
         static void Main(string[] args)
         {
-            int x = 5;
 
-            var h1 = new Hexagon(5);
-            var h2 = new Hexagon(6, ref h1);
+            var h1 = new Hexagon();
+            var h2 = new Hexagon();
 
-            Console.WriteLine(h2.getContent());
-            Console.WriteLine(h2.next.getContent());
+            h1.val(7);
+            h2.val(8);
 
-            h2.next.setContent(4);
+            Console.WriteLine(h1.val());
+            Console.WriteLine(h2.val());
 
-            Console.WriteLine(h2.getContent());
-            Console.WriteLine(h2.next.getContent());
+            h1[0] = h2;
+
+            h2.val(9);
+            h1.val(10);
+
+            Console.WriteLine(h1[0].val());
+            Console.WriteLine(h2[5].val());
 
         }
     }

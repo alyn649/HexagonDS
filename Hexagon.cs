@@ -6,28 +6,48 @@ namespace HexagonDS
     {
         private int content;
 
-        public Hexagon[] sides;
+        private Hexagon[] sides;
 
         public Hexagon()
         {
             this.sides = new Hexagon[6];
         }
 
-
-        public void connectSide(ref Hexagon hex, int side, int targetSide)
+        public Hexagon this[int key]
         {
-            // thisSide: the side on the hex that this function is called on
-            // targetSide: the side on the hex thats ref being passed 
-            this.sides[thisSide] = hex;
+            get => getSide(key);
+            set => setSideMaster(key, value);
+        }
 
+        // Getter for hexagons connected.
+        public Hexagon getSide(int key)
+        {
+            return this.sides[key];
+        }
+    
+        // Setter for hexagon on LHS (calls on RHS back to self)
+        public void setSideMaster(int key, Hexagon hex)
+        {
+            // Set target hex to be connected on given side
+            this.sides[key] = hex;
+
+            // Connect target hex back to this hex on opposite side
+            hex.setSideSlave(5 - key, this);
+        }
+
+        // Setter for hexagon on RHS
+        private void setSideSlave(int key, Hexagon hex)
+        {
+            // Just sets hex, only even 
+            this.sides[key] = hex;
         }
 
         // getter and setter for content
-        public int getContent()
+        public int val()
         {
             return this.content;
         }
-        public void setContent(int content)
+        public void val(int content)
         {
             this.content = content;
         }
